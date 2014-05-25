@@ -39,8 +39,8 @@
     
     [[CSDataProvider sharedDataProvider] getUser:^(NSDictionary *user) {
         
-        [nameField setText:[user objectForKey:@"na"]];
-        [emailField setText:[user objectForKey:@"em"]];
+        [nameField setText:[user objectForKey:@"una"]];
+        [emailField setText:[user objectForKey:@"uem"]];
         
     } failureHandler:^{
         NSLog(@"Couldnt get user");

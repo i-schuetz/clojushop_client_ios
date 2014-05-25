@@ -19,11 +19,11 @@
 
 
 NSString *const JSON_KEY_ID = @"id";
-NSString *const JSON_KEY_NAME = @"name";
-NSString *const JSON_KEY_PICTURE = @"picture";
-NSString *const JSON_KEY_DESCRIPTION = @"description";
-NSString *const JSON_KEY_PRICE = @"price";
-NSString *const JSON_KEY_SELLER = @"seller";
+NSString *const JSON_KEY_NAME = @"na";
+NSString *const JSON_KEY_PICTURE = @"img";
+NSString *const JSON_KEY_DESCRIPTION = @"des";
+NSString *const JSON_KEY_PRICE = @"pr";
+NSString *const JSON_KEY_SELLER = @"se";
 
 
 

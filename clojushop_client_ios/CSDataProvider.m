@@ -237,8 +237,8 @@
 - (void)login: (NSString *) username password: (NSString *) password successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/user/login"];
     NSDictionary *pars = @{
-                           @"username":username,
-                           @"password":password
+                           @"una":username,
+                           @"upw":password
                            };
     
     [self post:url params:pars
@@ -254,9 +254,9 @@
 - (void)register: (NSString *) username email: (NSString *) email password: (NSString *) password successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/user/register"];
     NSDictionary *pars = @{
-                           @"na":username,
-                           @"em":email,
-                           @"pw":password
+                           @"una":username,
+                           @"uem":email,
+                           @"upw":password
                            };
     
     [self post:url params:pars

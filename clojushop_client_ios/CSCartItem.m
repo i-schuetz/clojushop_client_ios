@@ -25,7 +25,7 @@ NSString *const JSON_KEY_CART_ITEM_PICTURE = @"pic";
 NSString *const JSON_KEY_CART_ITEM_DESCRIPTION = @"des";
 NSString *const JSON_KEY_CART_ITEM_PRICE = @"pr";
 NSString *const JSON_KEY_CART_ITEM_SELLER = @"se";
-NSString *const JSON_KEY_CART_ITEM_QUANTITY = @"se";
+NSString *const JSON_KEY_CART_ITEM_QUANTITY = @"qt";
 
 + (CSCartItem *) createFromDict:(NSDictionary *)dict {
     
