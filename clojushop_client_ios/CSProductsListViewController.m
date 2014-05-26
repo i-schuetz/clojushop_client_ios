@@ -40,12 +40,11 @@
     
     [[self tableView] registerNib:productCellNib forCellReuseIdentifier:@"CSProductCell"];
     
+    [self requestProducts];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
-
-    [self requestProducts];
 }
 
 - (void)requestProducts {
