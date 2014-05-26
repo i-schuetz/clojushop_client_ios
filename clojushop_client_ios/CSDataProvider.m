@@ -11,7 +11,7 @@
 #import "CSDataProvider.h"
 #import "CSProduct.h"
 #import "CSCartItem.h"
-
+#import "CSDialogUtils.h"
 
 @implementation CSDataProvider {
     NSString *host;
@@ -117,14 +117,6 @@
     return object != nil && [object isKindOfClass: [NSDictionary class]];
 }
 
-- (void)showAlert: (NSString *) title msg: (NSString *) msg {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
 
 
 
@@ -169,7 +161,7 @@
             break;
     }
     
-    [self showAlert: @"Error" msg: errorMsg];
+    [CSDialogUtils showAlert: @"Error" msg: errorMsg];
 }
 
 
