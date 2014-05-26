@@ -67,7 +67,6 @@
         [self onRetrievedItems: items];
         
     } failureHandler:^{
-        
         [self setProgressHidden: YES];
     }];
 }
@@ -96,7 +95,7 @@
     [[cell productBrand] setText:[item seller]];
     [[cell productPrice] setText:[item price]];
     
-    NSURL *imageUrl = [NSURL URLWithString:[item picture]];
+    NSURL *imageUrl = [NSURL URLWithString:[item imgList]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     [[cell productImg] setImage:image];

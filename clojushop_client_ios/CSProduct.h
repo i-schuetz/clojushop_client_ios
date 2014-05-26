@@ -15,7 +15,8 @@
 @property (nonatomic, strong) NSString *id_;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *descr;
-@property (nonatomic, strong) NSString *picture;
+@property (nonatomic, strong) NSString *imgList;
+@property (nonatomic, strong) NSString *imgDetails;
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *seller;
 

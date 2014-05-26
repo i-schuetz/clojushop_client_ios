@@ -27,6 +27,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"Clojushop client";
     }
     return self;
 }
@@ -43,8 +44,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
-
-    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 
     [self requestProducts];
 }
@@ -90,7 +89,7 @@
     [[cell productBrand] setText:[product seller]];
     [[cell productPrice] setText:[product price]];
     
-    NSURL *imageUrl = [NSURL URLWithString:[product picture]];
+    NSURL *imageUrl = [NSURL URLWithString:[product imgList]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     [[cell productImg] setImage:image];

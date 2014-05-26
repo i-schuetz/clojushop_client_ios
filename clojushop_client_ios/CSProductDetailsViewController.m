@@ -32,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.title = [product name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,14 +43,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];
 
     [productNameLabel setText:[product name]];
     [productBrandLabel setText:[product seller]];
     [productLongDescrLabel setText:[product descr]]; //todo
     [productPriceLabel setText:[product price]];
-    NSURL *imageUrl = [NSURL URLWithString:[product picture]];
+    NSURL *imageUrl = [NSURL URLWithString:[product imgDetails]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     [productImageView setImage:image];

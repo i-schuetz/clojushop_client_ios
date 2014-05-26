@@ -14,18 +14,21 @@
 @synthesize name;
 @synthesize descr;
 @synthesize seller;
-@synthesize picture;
+@synthesize imgList;
+@synthesize imgDetails;
 @synthesize price;
 @synthesize quantity;
 
 
 NSString *const JSON_KEY_CART_ITEM_ID = @"id";
 NSString *const JSON_KEY_CART_ITEM_NAME = @"na";
-NSString *const JSON_KEY_CART_ITEM_PICTURE = @"pic";
+NSString *const JSON_KEY_CART_IMAGE = @"pic"; //TODO use img
 NSString *const JSON_KEY_CART_ITEM_DESCRIPTION = @"des";
 NSString *const JSON_KEY_CART_ITEM_PRICE = @"pr";
 NSString *const JSON_KEY_CART_ITEM_SELLER = @"se";
 NSString *const JSON_KEY_CART_ITEM_QUANTITY = @"qt";
+NSString *const JSON_KEY_CART_LIST = @"pl";
+NSString *const JSON_KEY_CART_DETAILS = @"pd";
 
 + (CSCartItem *) createFromDict:(NSDictionary *)dict {
     
@@ -34,11 +37,14 @@ NSString *const JSON_KEY_CART_ITEM_QUANTITY = @"qt";
     @try {
         [item setId_:[dict objectForKey:JSON_KEY_CART_ITEM_ID]];
         [item setName:[dict objectForKey:JSON_KEY_CART_ITEM_NAME]];
-        [item setPicture:[dict objectForKey:JSON_KEY_CART_ITEM_PICTURE]];
         [item setDescr:[dict objectForKey:JSON_KEY_CART_ITEM_DESCRIPTION]];
         [item setPrice:[dict objectForKey:JSON_KEY_CART_ITEM_PRICE]];
         [item setSeller:[dict objectForKey:JSON_KEY_CART_ITEM_SELLER]];
         [item setQuantity:[dict objectForKey:JSON_KEY_CART_ITEM_QUANTITY]];
+        
+        NSDictionary *imgs = [dict objectForKey:JSON_KEY_CART_IMAGE];
+        [item setImgList:[imgs objectForKey:JSON_KEY_CART_LIST]];
+        [item setImgDetails:[imgs objectForKey:JSON_KEY_CART_DETAILS]];
         
         return item;
         
@@ -50,8 +56,8 @@ NSString *const JSON_KEY_CART_ITEM_QUANTITY = @"qt";
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, picture: %@, price: %@, quantity: %@",
-            id_, name, descr, seller, picture, price, quantity];
+    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, img list: %@, img details: %@, price: %@, quantity: %@",
+            id_, name, descr, seller, imgList, imgDetails, price, quantity];
 }
 
 @end

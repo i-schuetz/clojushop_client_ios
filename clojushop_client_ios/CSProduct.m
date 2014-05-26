@@ -14,18 +14,19 @@
 @synthesize name;
 @synthesize descr;
 @synthesize seller;
-@synthesize picture;
+@synthesize imgList;
+@synthesize imgDetails;
 @synthesize price;
 
 
 NSString *const JSON_KEY_ID = @"id";
 NSString *const JSON_KEY_NAME = @"na";
-NSString *const JSON_KEY_PICTURE = @"img";
+NSString *const JSON_KEY_IMAGE = @"img";
 NSString *const JSON_KEY_DESCRIPTION = @"des";
 NSString *const JSON_KEY_PRICE = @"pr";
 NSString *const JSON_KEY_SELLER = @"se";
-
-
+NSString *const JSON_KEY_LIST = @"pl";
+NSString *const JSON_KEY_DETAILS = @"pd";
 
 + (CSProduct *) createFromDict:(NSDictionary *)dict {
     
@@ -34,10 +35,14 @@ NSString *const JSON_KEY_SELLER = @"se";
     @try {
         [p setId_:[dict objectForKey:JSON_KEY_ID]];
         [p setName:[dict objectForKey:JSON_KEY_NAME]];
-        [p setPicture:[dict objectForKey:JSON_KEY_PICTURE]];
         [p setDescr:[dict objectForKey:JSON_KEY_DESCRIPTION]];
         [p setPrice:[dict objectForKey:JSON_KEY_PRICE]];
         [p setSeller:[dict objectForKey:JSON_KEY_SELLER]];
+        
+        NSDictionary *imgs = [dict objectForKey:JSON_KEY_IMAGE];
+        [p setImgList:[imgs objectForKey:JSON_KEY_LIST]];
+        [p setImgDetails:[imgs objectForKey:JSON_KEY_DETAILS]];
+        
         return p;
         
     } @catch (NSException *exception) {
@@ -46,8 +51,8 @@ NSString *const JSON_KEY_SELLER = @"se";
     }
 }
 - (NSString *)description {
-    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, picture: %@, price: %@",
-            id_, name, descr, seller, picture, price];
+    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, img list: %@, img details: %@, price: %@",
+            id_, name, descr, seller, imgList, imgDetails, price];
 }
 
 @end

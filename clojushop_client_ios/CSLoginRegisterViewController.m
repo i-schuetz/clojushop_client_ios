@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    [self fillWithTestData];
+    [self fillWithTestData];
     
     [userAccountView setHidden:YES];
     [loginRegisterView setHidden:NO];

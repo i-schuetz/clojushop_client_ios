@@ -174,6 +174,15 @@
 
 
 
+- (NSDictionary *)addScreenSize: (NSDictionary *) params {
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+
+    NSMutableDictionary *paramsCopy = [params mutableCopy];
+    [paramsCopy setValue:[NSString stringWithFormat:@"%dx%d", (int)(bounds.size.width), (int)(bounds.size.height)] forKey:@"scsz"];
+
+    return paramsCopy;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //public
 
@@ -183,6 +192,8 @@
                            @"st":[NSNumber numberWithInteger:start],
                            @"sz":[NSNumber numberWithInteger:size]
                            };
+    
+    pars = [self addScreenSize:pars];
     
     [self get:url params:pars
         successHandler:^(NSDictionary * response) {
@@ -291,8 +302,12 @@
 
 - (void)getCart: (void (^)(NSArray *items)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/cart"];
-    
-    [self get:url params:nil
+
+    NSDictionary *pars = @{};
+
+    pars = [self addScreenSize:pars];
+
+    [self get:url params:pars
         successHandler:^(NSDictionary * response) {
             NSArray *itemsJSON = [response objectForKey:@"cart"];
             
