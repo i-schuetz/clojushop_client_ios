@@ -16,13 +16,15 @@
 @end
 
 @implementation CSCartViewController {
-    NSArray *items;
+    NSMutableArray *items;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"Cart";
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
 }
@@ -105,6 +107,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 133;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        CSCartItem *item = [items objectAtIndex:[indexPath row]];
+        
+        [[CSDataProvider sharedDataProvider] removeFromCart:[item id_] successHandler:^{
+            [items removeObject:item];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        } failureHandler:^{
+        }];
+    }
 }
 
 

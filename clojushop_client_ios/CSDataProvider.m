@@ -299,6 +299,22 @@
         }];
     }
 
+- (void)removeFromCart: (NSString *) productId successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
+    NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/cart/remove"];
+    
+    NSDictionary *pars = @{
+                           @"pid":productId
+                           };
+    
+    [self post:url params:pars
+        successHandler:^(NSDictionary * response) {
+            successHandler();
+        }
+        failureHandler:^ BOOL (int statusCode) {
+            failureHandler();
+            return FALSE;
+        }];
+    }
 
 - (void)getCart: (void (^)(NSArray *items)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/cart"];

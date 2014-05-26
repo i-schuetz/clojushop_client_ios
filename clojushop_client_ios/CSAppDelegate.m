@@ -48,14 +48,15 @@
     [prodNavController.tabBarItem setTitle:@"Products"];
     
     CSCartViewController *cartController = [[CSCartViewController alloc] init];
-    [cartController.tabBarItem setTitle:@"Cart"];
+    UINavigationController *cartNavController = [[UINavigationController alloc] initWithRootViewController:cartController];
+    [cartNavController.tabBarItem setTitle:@"Cart"];
     
     CSLoginRegisterViewController *loginRegisterController = [[CSLoginRegisterViewController alloc] init];
     UINavigationController *loginRegisterNavController = [[UINavigationController alloc] initWithRootViewController:loginRegisterController];
     [loginRegisterNavController.tabBarItem setTitle:@"Login / Register"];
     
     tabBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:prodNavController, cartController, loginRegisterNavController, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:prodNavController, cartNavController, loginRegisterNavController, nil];
     [tabBarController setViewControllers:viewControllers];
     
     
