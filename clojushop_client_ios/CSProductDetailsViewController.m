@@ -8,6 +8,7 @@
 
 #import "CSProductDetailsViewController.h"
 #import "CSDataProvider.h"
+#import "CSDialogUtils.h"
 
 @interface CSProductDetailsViewController ()
 
@@ -67,6 +68,8 @@
     
     [[CSDataProvider sharedDataProvider] addToCart:[product id_] successHandler:^{
         
+        [CSDialogUtils showAlert: @"Success" msg: @"Added!"];
+
     } failureHandler:^{
     }];
     
