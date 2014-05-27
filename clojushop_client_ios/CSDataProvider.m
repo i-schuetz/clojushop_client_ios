@@ -308,6 +308,24 @@
         }];
     }
 
+- (void)setCartQuantity: (NSString *) productId quantity: (NSString *) quantity successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
+    NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/cart/quantity"];
+    
+    NSDictionary *pars = @{
+                           @"pid":productId,
+                           @"qt":quantity
+                           };
+    
+    [self post:url params:pars
+        successHandler:^(NSDictionary * response) {
+            successHandler();
+        }
+        failureHandler:^ BOOL (int statusCode) {
+            failureHandler();
+            return FALSE;
+        }];
+    }
+
 - (void)getCart: (void (^)(NSArray *items)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/cart"];
 

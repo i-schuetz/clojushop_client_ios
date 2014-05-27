@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "CSBaseViewController.h"
+#import "CSSingleSelectionController.h"
 
-@interface CSCartViewController : CSBaseViewController
+@interface CSCartViewController : CSBaseViewController <CSSingleSelectionControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *emptyCartView;
+
+@property (nonatomic, strong) CSSingleSelectionController *quantityPicker;
+@property (nonatomic, strong) UIPopoverController *quantityPickerPopover;
+
+- (void)setQuantity:(id)sender atIndexPath:(NSIndexPath *)ip;
 
 @end

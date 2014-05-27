@@ -10,6 +10,7 @@
 #import "CSDataProvider.h"
 #import "CSCartItem.h"
 #import "CSCartItemCell.h"
+#import "CSCartQuantityItem.h"
 
 @interface CSCartViewController ()
 
@@ -57,7 +58,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [self requestItems];
     
-    
 }
 
 - (void) requestItems {
@@ -86,6 +86,7 @@
     return [items count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CSCartItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CSCartItemCell"];
@@ -96,6 +97,10 @@
     [[cell productDescr] setText:[item descr]];
     [[cell productBrand] setText:[item seller]];
     [[cell productPrice] setText:[item price]];
+    [[cell quantityField] setText:[item quantity]];
+
+    [cell setController:self];
+    [cell setTableView:tableView];
     
     NSURL *imageUrl = [NSURL URLWithString:[item imgList]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
@@ -121,6 +126,50 @@
         }];
     }
 }
+
+- (void)setQuantity:(id)sender atIndexPath:(NSIndexPath *)ip {
+    CSCartItem *selectedCartItem = [items objectAtIndex:ip.row];
+    [self showDialog: selectedCartItem];
+}
+
+
+- (void)showDialog: (CSCartItem *) selectedCartItem {
+    
+    //for now dummy quantities, our products don't have stock yet...
+    NSArray *quantities = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", nil];
+    
+    NSArray *cartItemsForQuantitiesDialog = [self wrapQuantityItemsForDialog: quantities];
+    CSSingleSelectionController *selectQuantityController = [[CSSingleSelectionController alloc] initWithStyle:UITableViewStylePlain];
+    
+    selectQuantityController.items = cartItemsForQuantitiesDialog;
+    selectQuantityController.delegate = self;
+    selectQuantityController.baseObject = selectedCartItem;
+    [self presentViewController:selectQuantityController animated:YES completion:nil];
+}
+
+
+- (NSArray *)wrapQuantityItemsForDialog:(NSArray *)quantities {
+    NSMutableArray *wrappedQuantityItems = [[NSMutableArray alloc]init];
+    
+    for (NSString *quantity in quantities) {
+        [wrappedQuantityItems addObject:[[CSCartQuantityItem alloc]initWithQuantity:quantity]];
+    }
+    return wrappedQuantityItems;
+}
+
+-(void)selectedItem:(id<CSSingleSelectionItem>)item baseObject:(id)baseObject {
+    CSCartItem *cartItem = baseObject;
+    NSString *quantity = [item getWrappedItem];
+    
+    [[CSDataProvider sharedDataProvider] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
+
+        cartItem.quantity = quantity; //TODO server should send updated quantity back
+        [[self tableView] reloadData];
+        
+    } failureHandler:^{
+    }];
+}
+
 
 
 @end

@@ -40,7 +40,7 @@ NSString *const JSON_KEY_CART_DETAILS = @"pd";
         [item setDescr:[dict objectForKey:JSON_KEY_CART_ITEM_DESCRIPTION]];
         [item setPrice:[dict objectForKey:JSON_KEY_CART_ITEM_PRICE]];
         [item setSeller:[dict objectForKey:JSON_KEY_CART_ITEM_SELLER]];
-        [item setQuantity:[dict objectForKey:JSON_KEY_CART_ITEM_QUANTITY]];
+        [item setQuantity:[NSString stringWithFormat:@"%@", [dict objectForKey:JSON_KEY_CART_ITEM_QUANTITY]]];
         
         NSDictionary *imgs = [dict objectForKey:JSON_KEY_CART_IMAGE];
         [item setImgList:[imgs objectForKey:JSON_KEY_CART_LIST]];
