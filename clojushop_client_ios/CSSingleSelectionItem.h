@@ -16,7 +16,7 @@
 @required
 
 /**
- Returns label that to be displayed in tableView
+ Returns label to be displayed in tableView
  */
 - (NSString *)getLabel;
 
