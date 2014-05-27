@@ -148,10 +148,13 @@
     CSCartItem *cartItem = baseObject;
     NSString *quantity = [item getWrappedItem];
     
+    [self setProgressHidden:NO];
+    
     [[CSDataProvider sharedDataProvider] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
-
         cartItem.quantity = quantity; //TODO server should send updated quantity back
         [[self tableView] reloadData];
+        
+        [self setProgressHidden:YES];
         
     } failureHandler:^{
     }];
