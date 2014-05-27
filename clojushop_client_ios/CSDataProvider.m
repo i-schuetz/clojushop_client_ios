@@ -313,7 +313,8 @@
     
     NSDictionary *pars = @{
                            @"pid":productId,
-                           @"qt":quantity
+                           //@"qt":quantity
+                           @"qt":[NSNumber numberWithInteger: [quantity intValue]]
                            };
     
     [self post:url params:pars

@@ -18,6 +18,7 @@
 
 @implementation CSCartViewController {
     NSMutableArray *items;
+    BOOL showingController; //quickfix to avoid reloading when coming back from quantity controller... needs correct implementation
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,8 +53,15 @@
     UINib *nib = [UINib nibWithNibName:@"CSCartItemCell" bundle:nil];
     
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"CSCartItemCell"];
+ 
     
-    [self requestItems];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (!showingController) {
+        [self requestItems];
+    }
+    showingController = false;
 }
 
 - (void) requestItems {
@@ -131,6 +139,8 @@
     selectQuantityController.items = cartItemsForQuantitiesDialog;
     selectQuantityController.delegate = self;
     selectQuantityController.baseObject = selectedCartItem;
+    
+    showingController = true;
     [self presentViewController:selectQuantityController animated:YES completion:nil];
 }
 
