@@ -45,19 +45,15 @@
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     UINib *nib = [UINib nibWithNibName:@"CSCartItemCell" bundle:nil];
     
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"CSCartItemCell"];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self requestItems];
     
+    [self requestItems];
 }
 
 - (void) requestItems {
@@ -73,16 +69,7 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
     return [items count];
 }
 
