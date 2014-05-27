@@ -10,6 +10,7 @@
 
 @interface CSBaseViewController : UIViewController
 
+- (void)setProgressHidden: (BOOL)hidden transparent: (BOOL)transparent;
 - (void)setProgressHidden: (BOOL)hidden;
 
 @end

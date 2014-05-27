@@ -12,7 +12,7 @@
     UIActivityIndicatorView *indicator;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,7 +23,7 @@
         [indicator setHidden:NO];
         [indicator bringSubviewToFront:self];
         [indicator startAnimating];
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:backgroundColor];
     }
     return self;
 }

@@ -10,4 +10,6 @@
 
 @interface CSProgressIndicator : UIView
 
+- (id)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor;
+
 @end

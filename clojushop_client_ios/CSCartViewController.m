@@ -124,11 +124,7 @@
 
 - (void)setQuantity:(id)sender atIndexPath:(NSIndexPath *)ip {
     CSCartItem *selectedCartItem = [items objectAtIndex:ip.row];
-    [self showDialog: selectedCartItem];
-}
-
-
-- (void)showDialog: (CSCartItem *) selectedCartItem {
+    
     
     //for now dummy quantities, our products don't have stock yet...
     NSArray *quantities = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", nil];
@@ -158,13 +154,13 @@
     CSCartItem *cartItem = baseObject;
     NSString *quantity = [item getWrappedItem];
     
-    [self setProgressHidden:NO];
+    [self setProgressHidden:NO transparent:YES];
     
     [[CSDataProvider sharedDataProvider] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
         cartItem.quantity = quantity; //TODO server should send updated quantity back
         [[self tableView] reloadData];
         
-        [self setProgressHidden:YES];
+        [self setProgressHidden:YES transparent:YES];
         
     } failureHandler:^{
     }];

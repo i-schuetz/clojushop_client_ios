@@ -14,7 +14,9 @@
 @end
 
 @implementation CSBaseViewController {
-    CSProgressIndicator *indicator;
+    CSProgressIndicator *opaqueIndicator;
+    CSProgressIndicator *transparentIndicator;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,15 +47,37 @@
 
 
 - (void)initProgressIndicator {
-    indicator = [[CSProgressIndicator alloc] initWithFrame: [self getProgressBarBounds]];
-    [self.view addSubview:indicator];
-
-    [self setProgressHidden:YES];
+    opaqueIndicator = [[CSProgressIndicator alloc] initWithFrame: [self getProgressBarBounds] backgroundColor:[UIColor whiteColor]];
+    transparentIndicator = [[CSProgressIndicator alloc] initWithFrame: [self getProgressBarBounds] backgroundColor:[UIColor clearColor]];
     
+    [self.view addSubview:opaqueIndicator];
+    [self.view addSubview:transparentIndicator];
+
+    [self setProgressHidden:YES transparent:YES];
+    [self setProgressHidden:YES transparent:NO];
 }
 
-- (void)setProgressHidden: (BOOL)hidden {
+/**
+ This toggles visibility of a progress bar with transparent or opaque background
+ When hiding, it's important to use the same transparency parameter as used to show, to clear the state correctly
+ */
+- (void)setProgressHidden: (BOOL)hidden transparent: (BOOL)transparent {
+    CSProgressIndicator *indicator;
+    if (transparent) {
+        indicator = transparentIndicator;
+    } else {
+        indicator = opaqueIndicator;
+    }
+    
     [indicator setHidden: hidden];
+}
+
+/**
+ This toggles visibility of a progress bar with an opaque background
+ For a transparent background, use (void)setProgressHidden: (BOOL)hidden transparent: (BOOL)transparent
+ */
+- (void)setProgressHidden: (BOOL)hidden {
+    [self setProgressHidden:hidden transparent:NO];
 }
 
 - (CGRect)getProgressBarBounds {
