@@ -9,7 +9,7 @@
 #import "CSLoginRegisterViewController.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 #import "CSRegisterViewController.h"
 #import "CSUserAccountViewController.h"
 
@@ -75,7 +75,7 @@
 
     [self setProgressHidden: NO];
 
-    [[CSDataProvider sharedDataProvider] login: loginName password: loginPW
+    [[CSDataStore sharedDataStore] login: loginName password: loginPW
         successHandler:^{
 
             [self setProgressHidden: YES];

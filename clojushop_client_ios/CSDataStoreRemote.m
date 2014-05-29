@@ -8,28 +8,29 @@
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "CSDataProvider.h"
+#import "CSDataStoreRemote.h"
 #import "CSProduct.h"
 #import "CSCartItem.h"
 #import "CSDialogUtils.h"
 
-@implementation CSDataProvider {
+
+@implementation CSDataStoreRemote {
     NSString *host;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone {
-    return [self sharedDataProvider];
+    return [self sharedDataStoreRemote];
 }
 
-+ (CSDataProvider *)sharedDataProvider {
-    static CSDataProvider *sharedDataProvider = nil;
-    if (!sharedDataProvider) {
-        sharedDataProvider = [[super allocWithZone:nil] init];
++ (CSDataStoreRemote *)sharedDataStoreRemote {
+    static CSDataStoreRemote *sharedDataStoreRemote = nil;
+    if (!sharedDataStoreRemote) {
+        sharedDataStoreRemote = [[super allocWithZone:nil] init];
 
-        [sharedDataProvider initHost];
+        [sharedDataStoreRemote initHost];
         
     }
-    return sharedDataProvider;
+    return sharedDataStoreRemote;
 }
 
 - (void) initHost {
@@ -49,7 +50,7 @@
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    NSLog(@"Called method: %d url: %@ params: %@", method, url, params);
+    NSLog(@"Request method: %d url: %@ params: %@", method, url, params);
     
     void (^successHandler)(AFHTTPRequestOperation *operation, id responseObject) = ^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -178,7 +179,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //public
 
-- (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSArray *products)) successHandler failureHandler: (void (^)()) failureHandler {
+- (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSDictionary *)) successHandler failureHandler: (void (^)()) failureHandler {
     NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/products"];
     NSDictionary *pars = @{
                            @"st":[NSNumber numberWithInteger:start],
@@ -189,17 +190,7 @@
     
     [self get:url params:pars
         successHandler:^(NSDictionary * response) {
-            NSArray *productsJSON = [response objectForKey:@"products"];
-        
-            NSMutableArray *products = [[NSMutableArray alloc] init];
-            for (id productJSON in productsJSON) {
-                CSProduct *p = [CSProduct createFromDict:productJSON];
-                if (p != nil) {
-                    [products addObject:p];
-                }
-            }
-        
-            successHandler(products);
+            successHandler(response);
         }
         failureHandler:^ BOOL {
             failureHandler();

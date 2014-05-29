@@ -7,7 +7,7 @@
 //
 
 #import "CSUserAccountViewController.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 #import "CSLoginRegisterViewController.h"
 
 @interface CSUserAccountViewController ()
@@ -37,7 +37,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    [[CSDataProvider sharedDataProvider] getUser:^(NSDictionary *user) {
+    [[CSDataStore sharedDataStore] getUser:^(NSDictionary *user) {
         
         [nameField setText:[user objectForKey:@"una"]];
         [emailField setText:[user objectForKey:@"uem"]];
@@ -64,7 +64,7 @@
     
     [self setProgressHidden: NO];
 
-    [[CSDataProvider sharedDataProvider] logout:^() {
+    [[CSDataStore sharedDataStore] logout:^() {
         
         [self setProgressHidden: YES];
 

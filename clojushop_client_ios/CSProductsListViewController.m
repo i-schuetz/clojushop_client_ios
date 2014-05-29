@@ -13,7 +13,7 @@
 #import "CSProduct.h"
 #import "CSProductCell.h"
 #import "CSProductDetailsViewController.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 
 
 @interface CSProductsListViewController ()
@@ -51,7 +51,7 @@
     
     [self setProgressHidden: NO];
     
-    [[CSDataProvider sharedDataProvider] getProducts:0 size:4 successHandler:^(NSArray *products) {
+    [[CSDataStore sharedDataStore] getProducts:0 size:4 successHandler:^(NSArray *products) {
         [self onRetrievedProducts: products];
         
         [self setProgressHidden: YES];

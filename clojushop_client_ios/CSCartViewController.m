@@ -7,7 +7,7 @@
 //
 
 #import "CSCartViewController.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 #import "CSCartItem.h"
 #import "CSCartItemCell.h"
 #import "CSCartQuantityItem.h"
@@ -67,7 +67,7 @@
 - (void) requestItems {
     [self setProgressHidden: NO];
     
-    [[CSDataProvider sharedDataProvider] getCart:^(NSArray *items) {
+    [[CSDataStore sharedDataStore] getCart:^(NSArray *items) {
         [self setProgressHidden: YES];
         
         [self onRetrievedItems: items];
@@ -114,7 +114,7 @@
         
         CSCartItem *item = [items objectAtIndex:[indexPath row]];
         
-        [[CSDataProvider sharedDataProvider] removeFromCart:[item id_] successHandler:^{
+        [[CSDataStore sharedDataStore] removeFromCart:[item id_] successHandler:^{
             [items removeObject:item];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         } failureHandler:^{
@@ -156,7 +156,7 @@
     
     [self setProgressHidden:NO transparent:YES];
     
-    [[CSDataProvider sharedDataProvider] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
+    [[CSDataStore sharedDataStore] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
         cartItem.quantity = quantity; //TODO server should send updated quantity back
         [[self tableView] reloadData];
         

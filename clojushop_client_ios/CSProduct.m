@@ -28,8 +28,9 @@ NSString *const JSON_KEY_SELLER = @"se";
 NSString *const JSON_KEY_LIST = @"pl";
 NSString *const JSON_KEY_DETAILS = @"pd";
 
+//TODO use constructors instead
+
 + (CSProduct *) createFromDict:(NSDictionary *)dict {
-    
     CSProduct *p = [CSProduct alloc];
     
     @try {
@@ -50,6 +51,40 @@ NSString *const JSON_KEY_DETAILS = @"pd";
         return nil;
     }
 }
+
++ (CSProduct *) createFromCD: (CSProductCD *)productCD {
+    CSProduct *p = [CSProduct alloc];
+    
+    [p setId_:productCD.id];
+    [p setName:productCD.name];
+    [p setDescr:productCD.descr];
+    [p setPrice:productCD.price];
+    [p setSeller:productCD.seller];
+    
+    [p setImgList:productCD.img_pl];
+    [p setImgDetails:productCD.img_pd];
+    
+    return p;
+}
+
+
+
++ (NSArray *) createFromDictArray:(NSArray *)dictArray {
+    NSMutableArray *productsArray = [[NSMutableArray alloc] init];
+    for (NSDictionary * dict in dictArray) {
+        [productsArray addObject: [self createFromDict:dict]];
+    }
+    return productsArray;
+}
+
++ (NSArray *) createFromCDs: (NSArray *)productCDs {
+    NSMutableArray *products = [[NSMutableArray alloc]init];
+    for (CSProductCD *productCD in productCDs) {
+        [products addObject:[self createFromCD:productCD]];
+    }
+    return products;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, img list: %@, img details: %@, price: %@",
             id_, name, descr, seller, imgList, imgDetails, price];

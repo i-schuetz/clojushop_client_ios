@@ -7,7 +7,7 @@
 //
 
 #import "CSProductDetailsViewController.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 #import "CSDialogUtils.h"
 
 @interface CSProductDetailsViewController ()
@@ -66,7 +66,7 @@
 
 - (IBAction)onAddToCartPress:(id)sender {
     
-    [[CSDataProvider sharedDataProvider] addToCart:[product id_] successHandler:^{
+    [[CSDataStore sharedDataStore] addToCart:[product id_] successHandler:^{
         
         [CSDialogUtils showAlert: @"Success" msg: @"Added!"];
 

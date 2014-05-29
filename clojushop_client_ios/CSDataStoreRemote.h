@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CSDataProvider : NSObject
+@interface CSDataStoreRemote : NSObject
 
-+ (CSDataProvider *)sharedDataProvider;
++ (CSDataStoreRemote *)sharedDataStoreRemote;
 
-- (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSArray *products)) successHandler failureHandler: (void (^)()) failureHandler;
+- (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSDictionary *response)) successHandler failureHandler: (void (^)()) failureHandler;
 - (void)login: (NSString *) username password: (NSString *) password successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler;
 - (void)register: (NSString *) username email: (NSString *) email password: (NSString *) password successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler;
 - (void)removeFromCart: (NSString *) productId successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler;

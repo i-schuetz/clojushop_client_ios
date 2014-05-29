@@ -7,7 +7,7 @@
 //
 
 #import "CSRegisterViewController.h"
-#import "CSDataProvider.h"
+#import "CSDataStore.h"
 
 @interface CSRegisterViewController ()
 
@@ -68,7 +68,7 @@
     
     [self setProgressHidden: NO];
 
-    [[CSDataProvider sharedDataProvider] register: username email: email password: password
+    [[CSDataStore sharedDataStore] register: username email: email password: password
                               successHandler:^{
                                   
                                   [self setProgressHidden: YES];
