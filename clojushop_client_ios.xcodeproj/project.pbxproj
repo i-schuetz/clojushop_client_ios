@@ -13,6 +13,8 @@
 		EB2004F11936683F006F3832 /* CSProductCD.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2004F01936683F006F3832 /* CSProductCD.m */; };
 		EB2004F41936690D006F3832 /* CSDataStoreLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2004F31936690D006F3832 /* CSDataStoreLocal.m */; };
 		EB2004F719367667006F3832 /* CSDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2004F619367667006F3832 /* CSDataStore.m */; };
+		EB20050819375F1B006F3832 /* CSCurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB20050719375F1B006F3832 /* CSCurrencyManager.m */; };
+		EB20050B19376018006F3832 /* CSCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EB20050A19376018006F3832 /* CSCurrency.m */; };
 		EB30C6631933FF730039388F /* CSDialogUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EB30C6621933FF730039388F /* CSDialogUtils.m */; };
 		EB430B161931414F0012B27E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB430B151931414F0012B27E /* Foundation.framework */; };
 		EB430B181931414F0012B27E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB430B171931414F0012B27E /* CoreGraphics.framework */; };
@@ -77,6 +79,10 @@
 		EB2004F31936690D006F3832 /* CSDataStoreLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDataStoreLocal.m; sourceTree = "<group>"; };
 		EB2004F519367667006F3832 /* CSDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDataStore.h; sourceTree = "<group>"; };
 		EB2004F619367667006F3832 /* CSDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDataStore.m; sourceTree = "<group>"; };
+		EB20050619375F1B006F3832 /* CSCurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCurrencyManager.h; sourceTree = "<group>"; };
+		EB20050719375F1B006F3832 /* CSCurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCurrencyManager.m; sourceTree = "<group>"; };
+		EB20050919376018006F3832 /* CSCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCurrency.h; sourceTree = "<group>"; };
+		EB20050A19376018006F3832 /* CSCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCurrency.m; sourceTree = "<group>"; };
 		EB30C6611933FF730039388F /* CSDialogUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDialogUtils.h; sourceTree = "<group>"; };
 		EB30C6621933FF730039388F /* CSDialogUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDialogUtils.m; sourceTree = "<group>"; };
 		EB430B121931414F0012B27E /* clojushop_client_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clojushop_client_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +182,10 @@
 			children = (
 				EB30C6611933FF730039388F /* CSDialogUtils.h */,
 				EB30C6621933FF730039388F /* CSDialogUtils.m */,
+				EB20050619375F1B006F3832 /* CSCurrencyManager.h */,
+				EB20050719375F1B006F3832 /* CSCurrencyManager.m */,
+				EB20050919376018006F3832 /* CSCurrency.h */,
+				EB20050A19376018006F3832 /* CSCurrency.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -520,6 +530,7 @@
 				EB6E2DB9193142F400ED6B18 /* CSProduct.m in Sources */,
 				EB2004F41936690D006F3832 /* CSDataStoreLocal.m in Sources */,
 				EB430B281931414F0012B27E /* CSAppDelegate.m in Sources */,
+				EB20050819375F1B006F3832 /* CSCurrencyManager.m in Sources */,
 				EB6E2DB1193142F400ED6B18 /* CSCartItem.m in Sources */,
 				EB6E2DB0193142F400ED6B18 /* CSBaseViewController.m in Sources */,
 				EB430B241931414F0012B27E /* main.m in Sources */,
@@ -528,6 +539,7 @@
 				EB6E2DC3193142F400ED6B18 /* CSUserAccountViewController.m in Sources */,
 				EB2004ED19350D44006F3832 /* CSCartQuantityItem.m in Sources */,
 				EB6E2DC0193142F400ED6B18 /* CSProgressIndicator.m in Sources */,
+				EB20050B19376018006F3832 /* CSCurrency.m in Sources */,
 				EB6E2DB2193142F400ED6B18 /* CSCartItemCell.m in Sources */,
 				EB6E2DB6193142F400ED6B18 /* CSDataStoreRemote.m in Sources */,
 				EB6E2DB7193142F400ED6B18 /* CSLoginRegisterViewController.m in Sources */,
