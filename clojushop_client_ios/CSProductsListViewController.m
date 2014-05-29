@@ -24,6 +24,8 @@
     NSArray *products;
 }
 
+@synthesize tableView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -38,12 +40,14 @@
     
     UINib *productCellNib = [UINib nibWithNibName:@"CSProductCell" bundle:nil];
     
-    [[self tableView] registerNib:productCellNib forCellReuseIdentifier:@"CSProductCell"];
+    [tableView registerNib:productCellNib forCellReuseIdentifier:@"CSProductCell"];
     
     [self requestProducts];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:animated];
+
     [super viewDidAppear: animated];
 }
 
@@ -63,7 +67,7 @@
   
 - (void)onRetrievedProducts:(NSArray *)prods {
     products = prods;
-    [[self tableView] reloadData];
+    [tableView reloadData];
 }
 
 
