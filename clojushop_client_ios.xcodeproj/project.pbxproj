@@ -247,7 +247,7 @@
 				EB2004EE19366806006F3832 /* CoreData */,
 				EB30C6641933FF7F0039388F /* Utils */,
 				EB6E2DCE1931494A00ED6B18 /* UserAccount */,
-				EB6E2DCD1931490700ED6B18 /* DataProvider */,
+				EB6E2DCD1931490700ED6B18 /* DataStore */,
 				EB6E2DCC1931490200ED6B18 /* Register */,
 				EB6E2DCB193148FD00ED6B18 /* Login */,
 				EB6E2DCA1931485600ED6B18 /* VIews */,
@@ -368,7 +368,7 @@
 			name = Register;
 			sourceTree = "<group>";
 		};
-		EB6E2DCD1931490700ED6B18 /* DataProvider */ = {
+		EB6E2DCD1931490700ED6B18 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
 				EB6E2D97193142F400ED6B18 /* CSDataStoreRemote.h */,
@@ -378,7 +378,7 @@
 				EB2004F519367667006F3832 /* CSDataStore.h */,
 				EB2004F619367667006F3832 /* CSDataStore.m */,
 			);
-			name = DataProvider;
+			name = DataStore;
 			sourceTree = "<group>";
 		};
 		EB6E2DCE1931494A00ED6B18 /* UserAccount */ = {
