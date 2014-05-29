@@ -14,6 +14,7 @@
 #import "CSProductCell.h"
 #import "CSProductDetailsViewController.h"
 #import "CSDataStore.h"
+#import "CSCurrencyManager.h"
 
 
 @interface CSProductsListViewController ()
@@ -90,7 +91,9 @@
     [[cell productName] setText:[product name]];
     [[cell productDescr] setText:[product descr]];
     [[cell productBrand] setText:[product seller]];
-    [[cell productPrice] setText:[product price]];
+    
+    
+    [[cell productPrice] setText:[[CSCurrencyManager sharedCurrencyManager] getFormattedPrice:product.price currencyId:product.currency]];
     
     NSURL *imageUrl = [NSURL URLWithString:[product imgList]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];

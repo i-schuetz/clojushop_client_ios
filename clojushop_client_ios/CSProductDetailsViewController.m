@@ -9,6 +9,7 @@
 #import "CSProductDetailsViewController.h"
 #import "CSDataStore.h"
 #import "CSDialogUtils.h"
+#import "CSCurrencyManager.h"
 
 @interface CSProductDetailsViewController ()
 
@@ -48,7 +49,9 @@
     [productNameLabel setText:[product name]];
     [productBrandLabel setText:[product seller]];
     [productLongDescrLabel setText:[product descr]]; //todo
-    [productPriceLabel setText:[product price]];
+    
+    [productPriceLabel setText:[[CSCurrencyManager sharedCurrencyManager] getFormattedPrice:product.price currencyId:product.currency]];
+
     NSURL *imageUrl = [NSURL URLWithString:[product imgDetails]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [[UIImage alloc] initWithData:imageData];

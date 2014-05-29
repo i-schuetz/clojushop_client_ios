@@ -16,7 +16,9 @@
 @dynamic img_pl;
 @dynamic descr;
 @dynamic price;
+@dynamic currency;
 @dynamic seller;
 @dynamic img_pd;
+@dynamic ordering;
 
 @end

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *imgList;
 @property (nonatomic, strong) NSString *imgDetails;
 @property (nonatomic, strong) NSString *price;
+@property (nonatomic, strong) NSString * currency;
 @property (nonatomic, strong) NSString *seller;
 
 

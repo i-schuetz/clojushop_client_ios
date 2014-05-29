@@ -112,6 +112,7 @@
     productCD.name = product.name;
     productCD.descr = product.descr;
     productCD.price = product.price;
+    productCD.currency = product.currency;
     productCD.seller = product.seller;
     productCD.img_pl = product.imgList;
     productCD.img_pd = product.imgDetails;

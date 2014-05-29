@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * img_pl;
 @property (nonatomic, retain) NSString * descr;
 @property (nonatomic, retain) NSString * price;
+@property (nonatomic, retain) NSString * currency;
 @property (nonatomic, retain) NSString * seller;
 @property (nonatomic, retain) NSString * img_pd;
 @property (nonatomic) double ordering;

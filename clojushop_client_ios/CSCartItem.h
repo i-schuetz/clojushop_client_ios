@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *price;
 @property (nonatomic, strong) NSString *seller;
 @property (nonatomic, strong) NSString *quantity;
-
+@property (nonatomic, strong) NSString * currency;
 
 + (CSCartItem *) createFromDict:(NSDictionary *)dict;
 

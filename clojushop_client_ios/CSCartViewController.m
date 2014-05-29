@@ -11,6 +11,7 @@
 #import "CSCartItem.h"
 #import "CSCartItemCell.h"
 #import "CSCartQuantityItem.h"
+#import "CSCurrencyManager.h"
 
 @interface CSCartViewController ()
 
@@ -91,7 +92,9 @@
     [[cell productName] setText:[item name]];
     [[cell productDescr] setText:[item descr]];
     [[cell productBrand] setText:[item seller]];
-    [[cell productPrice] setText:[item price]];
+    
+    [[cell productPrice] setText:[[CSCurrencyManager sharedCurrencyManager] getFormattedPrice:[item price] currencyId:item.currency]];
+
     [[cell quantityField] setText:[item quantity]];
 
     [cell setController:self];

@@ -17,13 +17,15 @@
 @synthesize imgList;
 @synthesize imgDetails;
 @synthesize price;
-
+@synthesize currency;
 
 NSString *const JSON_KEY_ID = @"id";
 NSString *const JSON_KEY_NAME = @"na";
 NSString *const JSON_KEY_IMAGE = @"img";
 NSString *const JSON_KEY_DESCRIPTION = @"des";
 NSString *const JSON_KEY_PRICE = @"pr";
+NSString *const JSON_KEY_PRICE_VALUE = @"v";
+NSString *const JSON_KEY_PRICE_CURRENCY = @"c";
 NSString *const JSON_KEY_SELLER = @"se";
 NSString *const JSON_KEY_LIST = @"pl";
 NSString *const JSON_KEY_DETAILS = @"pd";
@@ -37,7 +39,11 @@ NSString *const JSON_KEY_DETAILS = @"pd";
         [p setId_:[dict objectForKey:JSON_KEY_ID]];
         [p setName:[dict objectForKey:JSON_KEY_NAME]];
         [p setDescr:[dict objectForKey:JSON_KEY_DESCRIPTION]];
-        [p setPrice:[dict objectForKey:JSON_KEY_PRICE]];
+        
+        NSDictionary *price = [dict objectForKey:JSON_KEY_PRICE];
+        [p setPrice:[price objectForKey:JSON_KEY_PRICE_VALUE]];
+        [p setCurrency: [price objectForKey:JSON_KEY_PRICE_CURRENCY]];
+        
         [p setSeller:[dict objectForKey:JSON_KEY_SELLER]];
         
         NSDictionary *imgs = [dict objectForKey:JSON_KEY_IMAGE];
@@ -59,6 +65,8 @@ NSString *const JSON_KEY_DETAILS = @"pd";
     [p setName:productCD.name];
     [p setDescr:productCD.descr];
     [p setPrice:productCD.price];
+    [p setCurrency:productCD.currency];
+    
     [p setSeller:productCD.seller];
     
     [p setImgList:productCD.img_pl];
@@ -86,8 +94,8 @@ NSString *const JSON_KEY_DETAILS = @"pd";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, img list: %@, img details: %@, price: %@",
-            id_, name, descr, seller, imgList, imgDetails, price];
+    return [NSString stringWithFormat:@"id_: %@, name: %@, description: %@, seller: %@, img list: %@, img details: %@, price: %@, currency: %@",
+            id_, name, descr, seller, imgList, imgDetails, price, currency];
 }
 
 @end
