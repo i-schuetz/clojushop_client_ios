@@ -12,6 +12,7 @@
 #import "CSCartItemCell.h"
 #import "CSCartQuantityItem.h"
 #import "CSCurrencyManager.h"
+#import "CSDialogUtils.h"
 
 @interface CSCartViewController ()
 
@@ -21,6 +22,8 @@
     NSMutableArray *items;
     BOOL showingController; //quickfix to avoid reloading when coming back from quantity controller... needs correct implementation
 }
+
+@synthesize totalView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,12 +42,31 @@
         [[self emptyCartView] setHidden:NO];
         
         //TODO why this didnt work with only nib - before there was view with children table and empty, empty never shows
-        [[[self tableView] superview] addSubview:[self emptyCartView]];
+        [[[[self tableView] superview] superview] addSubview:[self emptyCartView]];
 
     } else {
         [[self emptyCartView] setHidden:YES];
         [[self tableView] reloadData];
+        
+        [self updateTotalView];
     }
+}
+
+- (void)updateTotalView {
+    //TODO server calculates this
+    //TODO multiple currencies
+    //for now we assume all the items have the same currency
+    NSString *currencyId = ((CSCartItem *)[items objectAtIndex:0]).currency;
+    [totalView setText:
+        [[CSCurrencyManager sharedCurrencyManager] getFormattedPrice: [self getTotalPrice:items].stringValue currencyId:currencyId]];
+}
+
+- (NSNumber *)getTotalPrice:(NSArray *)cartItems {
+    double total = 0;
+    for (CSCartItem *item in cartItems) {
+        total += [item.price doubleValue] * item.quantity.intValue;
+    }
+    return [NSNumber numberWithDouble:total];
 }
 
 - (void)viewDidLoad {
@@ -55,6 +77,7 @@
     
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"CSCartItemCell"];
  
+    [[self emptyCartView] setHidden:YES];
     
 }
 
@@ -63,6 +86,9 @@
         [self requestItems];
     }
     showingController = false;
+
+    [self adjustLayout];
+
 }
 
 - (void) requestItems {
@@ -82,6 +108,28 @@
     return [items count];
 }
 
+//TODO implement this correctly...
+- (void)adjustLayout {
+    
+    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.toolbar.translucent = NO;
+//    self.tabBarController.tabBar.translucent = NO;
+    
+//    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+
+    float h = screenBounds.size.height - (CGRectGetHeight(self.tabBarController.tabBar.frame)
+                                                  + CGRectGetHeight(self.navigationController.navigationBar.frame)
+                                                  + CGRectGetHeight(self.buyView.frame)
+                                                  );
+    
+    [self.tableView setFrame: CGRectMake(0, CGRectGetHeight(self.buyView.frame), self.tableView.frame.size.width, h)]
+    ;
+    //    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.navigationController.navigationBar.frame) + CGRectGetHeight(self.tabBarController.tabBar.frame) + CGRectGetHeight(self.buyView.frame), 0);
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -120,6 +168,9 @@
         [[CSDataStore sharedDataStore] removeFromCart:[item id_] successHandler:^{
             [items removeObject:item];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+            [self updateTotalView];
+
         } failureHandler:^{
         }];
     }
@@ -162,13 +213,16 @@
     [[CSDataStore sharedDataStore] setCartQuantity: cartItem.id_ quantity:quantity successHandler:^{
         cartItem.quantity = quantity; //TODO server should send updated quantity back
         [[self tableView] reloadData];
+
+        [self updateTotalView];
         
         [self setProgressHidden:YES transparent:YES];
-        
     } failureHandler:^{
     }];
 }
 
-
+- (IBAction)onBuyPress:(id)sender {
+    [CSDialogUtils showAlert:@"TODO" msg:@"Payment"];
+}
 
 @end

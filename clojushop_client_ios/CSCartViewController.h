@@ -15,6 +15,11 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *emptyCartView;
 
+@property (weak, nonatomic) IBOutlet UIView *buyView;
+@property (weak, nonatomic) IBOutlet UILabel *totalView;
+
+- (IBAction)onBuyPress:(id)sender;
+
 @property (nonatomic, strong) CSSingleSelectionController *quantityPicker;
 @property (nonatomic, strong) UIPopoverController *quantityPickerPopover;
 

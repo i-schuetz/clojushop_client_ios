@@ -10,6 +10,8 @@
 
 @interface CSCartItem : NSObject
 
+//TODO store nummeric values as numbers
+
 @property (nonatomic, strong) NSString *id_;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *descr;
