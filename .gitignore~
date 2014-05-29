@@ -1,0 +1,19 @@
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control?
+#
+# Pods/
+
+
+Build/
+clojushop_client_ios.xcworkspace/xcuserdata/ivanschuetzD.xcuserdatad/UserInterfaceState.xcuserstate
+
+clojushop_client_ios.xcworkspace/xcuserdata/ivanschuetzD.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+clojushop_client_ios.xcodeproj/project.pbxproj
+
+clojushop_client_ios.xcworkspace/xcuserdata/ivanschuetzD.xcuserdatad/WorkspaceSettings.xcsettings
+
+clojushop_client_ios.xcworkspace/xcuserdata/ivanschuetzD.xcuserdatad/xcdebugger/Expressions.xcexplist
