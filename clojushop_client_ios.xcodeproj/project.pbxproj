@@ -177,15 +177,22 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		EB20050C19377110006F3832 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				EB20050619375F1B006F3832 /* CSCurrencyManager.h */,
+				EB20050719375F1B006F3832 /* CSCurrencyManager.m */,
+				EB20050919376018006F3832 /* CSCurrency.h */,
+				EB20050A19376018006F3832 /* CSCurrency.m */,
+			);
+			name = Currency;
+			sourceTree = "<group>";
+		};
 		EB30C6641933FF7F0039388F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				EB30C6611933FF730039388F /* CSDialogUtils.h */,
 				EB30C6621933FF730039388F /* CSDialogUtils.m */,
-				EB20050619375F1B006F3832 /* CSCurrencyManager.h */,
-				EB20050719375F1B006F3832 /* CSCurrencyManager.m */,
-				EB20050919376018006F3832 /* CSCurrency.h */,
-				EB20050A19376018006F3832 /* CSCurrency.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 		EB430B1D1931414F0012B27E /* clojushop_client_ios */ = {
 			isa = PBXGroup;
 			children = (
+				EB20050C19377110006F3832 /* Currency */,
 				EB2004EE19366806006F3832 /* CoreData */,
 				EB30C6641933FF7F0039388F /* Utils */,
 				EB6E2DCE1931494A00ED6B18 /* UserAccount */,
