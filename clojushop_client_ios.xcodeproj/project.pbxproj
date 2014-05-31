@@ -53,6 +53,10 @@
 		EB6E2DC3193142F400ED6B18 /* CSUserAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DAE193142F400ED6B18 /* CSUserAccountViewController.m */; };
 		EB6E2DC4193142F400ED6B18 /* CSUserAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6E2DAF193142F400ED6B18 /* CSUserAccountViewController.xib */; };
 		EB6E2DC6193144C700ED6B18 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6E2DC5193144C700ED6B18 /* Config.plist */; };
+		EB93DEF11938CF2E00DBC33A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB93DEF01938CF2E00DBC33A /* QuartzCore.framework */; };
+		EB93DEF51938CF8300DBC33A /* CSPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB93DEF41938CF8300DBC33A /* CSPaymentViewController.m */; };
+		EB93DEF71938D1D100DBC33A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB93DEF61938D1D100DBC33A /* Security.framework */; };
+		EB93DEFB1938D47400DBC33A /* CSPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB93DEFA1938D47400DBC33A /* CSPaymentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +143,11 @@
 		EB6E2DAE193142F400ED6B18 /* CSUserAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserAccountViewController.m; sourceTree = "<group>"; };
 		EB6E2DAF193142F400ED6B18 /* CSUserAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSUserAccountViewController.xib; sourceTree = "<group>"; };
 		EB6E2DC5193144C700ED6B18 /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		EB93DEF01938CF2E00DBC33A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EB93DEF31938CF8300DBC33A /* CSPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPaymentViewController.h; sourceTree = "<group>"; };
+		EB93DEF41938CF8300DBC33A /* CSPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPaymentViewController.m; sourceTree = "<group>"; };
+		EB93DEF61938D1D100DBC33A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EB93DEFA1938D47400DBC33A /* CSPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSPaymentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +155,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB93DEF71938D1D100DBC33A /* Security.framework in Frameworks */,
+				EB93DEF11938CF2E00DBC33A /* QuartzCore.framework in Frameworks */,
 				EB430B181931414F0012B27E /* CoreGraphics.framework in Frameworks */,
 				EB430B1C1931414F0012B27E /* CoreData.framework in Frameworks */,
 				EB430B1A1931414F0012B27E /* UIKit.framework in Frameworks */,
@@ -230,6 +241,8 @@
 		EB430B141931414F0012B27E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB93DEF61938D1D100DBC33A /* Security.framework */,
+				EB93DEF01938CF2E00DBC33A /* QuartzCore.framework */,
 				EB430B151931414F0012B27E /* Foundation.framework */,
 				EB430B171931414F0012B27E /* CoreGraphics.framework */,
 				EB430B191931414F0012B27E /* UIKit.framework */,
@@ -243,6 +256,7 @@
 		EB430B1D1931414F0012B27E /* clojushop_client_ios */ = {
 			isa = PBXGroup;
 			children = (
+				EB93DEF21938CF6E00DBC33A /* Payment */,
 				EB20050C19377110006F3832 /* Currency */,
 				EB2004EE19366806006F3832 /* CoreData */,
 				EB30C6641933FF7F0039388F /* Utils */,
@@ -391,6 +405,16 @@
 			name = UserAccount;
 			sourceTree = "<group>";
 		};
+		EB93DEF21938CF6E00DBC33A /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				EB93DEFA1938D47400DBC33A /* CSPaymentViewController.xib */,
+				EB93DEF31938CF8300DBC33A /* CSPaymentViewController.h */,
+				EB93DEF41938CF8300DBC33A /* CSPaymentViewController.m */,
+			);
+			name = Payment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -480,6 +504,7 @@
 				EB6E2DC2193142F400ED6B18 /* CSRegisterViewController.xib in Resources */,
 				EB430B2D1931414F0012B27E /* Images.xcassets in Resources */,
 				EB6E2DC4193142F400ED6B18 /* CSUserAccountViewController.xib in Resources */,
+				EB93DEFB1938D47400DBC33A /* CSPaymentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +579,7 @@
 				EB2004F719367667006F3832 /* CSDataStore.m in Sources */,
 				EB30C6631933FF730039388F /* CSDialogUtils.m in Sources */,
 				EB6E2DBA193142F400ED6B18 /* CSProductCell.m in Sources */,
+				EB93DEF51938CF8300DBC33A /* CSPaymentViewController.m in Sources */,
 				EB430B2B1931414F0012B27E /* clojushop_client_ios.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
