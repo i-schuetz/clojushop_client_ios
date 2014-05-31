@@ -44,7 +44,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//CSDataStore implementation
+//public
 
 
 - (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSArray *products)) successHandler failureHandler: (void (^)()) failureHandler {
@@ -149,4 +149,14 @@
         failureHandler();
     }];
 }
+
+
+- (void)pay: (NSString *) token value: (NSString *) value currency: (NSString *) currency successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
+    [dataStoreRemote pay:token value:value currency:currency successHandler:^{
+        successHandler();
+    } failureHandler:^{
+        failureHandler();
+    }];
+}
+
 @end

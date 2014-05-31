@@ -13,6 +13,7 @@
 #import "CSCartQuantityItem.h"
 #import "CSCurrencyManager.h"
 #import "CSDialogUtils.h"
+#import "CSPaymentViewController.h"
 
 @interface CSCartViewController ()
 
@@ -21,6 +22,7 @@
 @implementation CSCartViewController {
     NSMutableArray *items;
     BOOL showingController; //quickfix to avoid reloading when coming back from quantity controller... needs correct implementation
+    CSCurrency *userCurrency;
 }
 
 @synthesize totalView;
@@ -31,8 +33,17 @@
     if (self) {
         self.title = @"Cart";
         [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+        
+        // listen for notifications - add to view controller doing the actions
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCart) name:@"ClearLocalCart" object:nil];
+
     }
     return self;
+}
+
+- (void)clearCart {
+    [items removeAllObjects];
+    [[self tableView] reloadData];
 }
 
 - (void) onRetrievedItems: (NSArray *) i {
@@ -57,9 +68,11 @@
     //TODO multiple currencies
     //for now we assume all the items have the same currency
     NSString *currencyId = ((CSCartItem *)[items objectAtIndex:0]).currency;
+    
     [totalView setText:
         [[CSCurrencyManager sharedCurrencyManager] getFormattedPrice: [self getTotalPrice:items].stringValue currencyId:currencyId]];
 }
+
 
 - (NSNumber *)getTotalPrice:(NSArray *)cartItems {
     double total = 0;
@@ -88,7 +101,6 @@
     showingController = false;
 
     [self adjustLayout];
-
 }
 
 - (void) requestItems {
@@ -222,7 +234,13 @@
 }
 
 - (IBAction)onBuyPress:(id)sender {
-    [CSDialogUtils showAlert:@"TODO" msg:@"Payment"];
+    CSPaymentViewController *paymentViewController = [[CSPaymentViewController alloc] initWithNibName:@"CSPaymentViewController" bundle:nil];
+    paymentViewController.totalValue = [self getTotalPrice:items];
+
+    //TODO
+//    paymentViewController.currency = [CSCurrency alloc]initWithId:<#(int)#> format:<#(NSString *)#>;
+    
+    [self.navigationController pushViewController:paymentViewController animated:YES];
 }
 
 @end

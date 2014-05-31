@@ -15,7 +15,6 @@
 
 - (void)getProducts: (int) start size: (int) size successHandler: (void (^)(NSArray *products)) successHandler failureHandler: (void (^)()) failureHandler;
 
-
 - (void)clearProducts;
 - (void)saveProducts: (NSArray *)products;
 

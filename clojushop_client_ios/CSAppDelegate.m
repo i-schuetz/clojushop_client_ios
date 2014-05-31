@@ -12,6 +12,7 @@
 #import "CSCartViewController.h"
 #import "CSLoginRegisterViewController.h"
 #import "CSCartViewController.h"
+#import "CSProductDetailsViewController.h"
 
 @implementation CSAppDelegate {
     UITabBarController *tabBarController;
@@ -43,9 +44,32 @@
 
 - (void)initTabs {
     
-    CSProductsListViewController *catalogController = [[CSProductsListViewController alloc] init];
-    UINavigationController *prodNavController = [[UINavigationController alloc] initWithRootViewController:catalogController];
-    [prodNavController.tabBarItem setTitle:@"Products"];
+    CSProductsListViewController *productListController = [[CSProductsListViewController alloc] init];
+    
+    
+    UIViewController *prodController;
+    
+    
+    
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        CSProductDetailsViewController *productDetailsController = [[CSProductDetailsViewController alloc] init];
+//        UINavigationController *productDetailsNav = [[UINavigationController alloc] initWithRootViewController:productDetailsController];
+//        NSArray *splitViewControllers = [NSArray arrayWithObjects: productListController, productDetailsNav, nil];
+//        
+//        UISplitViewController *splitController = [[UISplitViewController alloc] init];
+//        
+//        [splitController setDelegate:productDetailsController];
+//        [splitController setViewControllers:splitViewControllers];
+//        
+//        prodController = splitController;
+//        
+//    } else {
+        UINavigationController *prodNavController = [[UINavigationController alloc] initWithRootViewController:productListController];
+        [prodNavController.tabBarItem setTitle:@"Products"];
+        
+        prodController = prodNavController;
+//    }
+    
     
     CSCartViewController *cartController = [[CSCartViewController alloc] init];
     UINavigationController *cartNavController = [[UINavigationController alloc] initWithRootViewController:cartController];
@@ -56,7 +80,8 @@
     [loginRegisterNavController.tabBarItem setTitle:@"Login / Register"];
     
     tabBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = [NSArray arrayWithObjects:prodNavController, cartNavController, loginRegisterNavController, nil];
+//    NSArray *viewControllers = [NSArray arrayWithObjects:prodNavController, cartNavController, loginRegisterNavController, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:prodController, cartNavController, loginRegisterNavController, nil];
     [tabBarController setViewControllers:viewControllers];
     
     

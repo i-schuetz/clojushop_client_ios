@@ -348,4 +348,26 @@
         return FALSE;
     }];
     }
+
+- (void)pay: (NSString *) token value: (NSString *) value currency: (NSString *) currency successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler {
+    NSString *url = [NSString stringWithFormat:@"%@%@", host, @"/pay"];
+    
+    NSDictionary *pars = @{
+                           @"to":token,
+                           @"v":value,
+                           @"c":currency
+                           };
+    
+    [self post:url params:pars
+        successHandler:^(NSDictionary * response) {
+            successHandler();
+        }
+        failureHandler:^ BOOL (int statusCode) {
+            failureHandler();
+            return FALSE;
+        }];
+}
+
+
+
 @end

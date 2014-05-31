@@ -22,5 +22,6 @@
 - (void)getCart: (void (^)(NSArray *items)) successHandler failureHandler: (void (^)()) failureHandler;
 - (void)getUser: (void (^)(NSDictionary *user)) successHandler failureHandler: (void (^)()) failureHandler;
 - (void)logout: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler;
+- (void)pay: (NSString *) token value: (NSString *) value currency: (NSString *) currency successHandler: (void (^)(void)) successHandler failureHandler: (void (^)()) failureHandler;
 
 @end
