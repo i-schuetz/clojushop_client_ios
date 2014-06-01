@@ -5,6 +5,10 @@ iOS client for Clojushop api (https://github.com/i-schuetz/clojushop)
 
 Supports basic functions - products list, product details, login, register, user account, logout, cart, payment.
 
+![ScreenShot](https://raw.github.com/i-schuetz/clojushop_client_ios/master/cios_list.png)
+![ScreenShot](https://raw.github.com/i-schuetz/clojushop_client_ios/master/cios_det.png)
+![ScreenShot](https://raw.github.com/i-schuetz/clojushop_client_ios/master/cios_login.png)
+![ScreenShot](https://raw.github.com/i-schuetz/clojushop_client_ios/master/cios_cart.png)
 
 
 #### License
