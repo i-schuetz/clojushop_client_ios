@@ -11,8 +11,7 @@
 #import "CSDialogUtils.h"
 #import "CSDataStore.h"
 
-//Insert here public key that corresponds to secret key in server (same account and enviroment (test/live))
-#define EXAMPLE_STRIPE_PUBLISHABLE_KEY @"your_stripe_public_key"
+#define EXAMPLE_STRIPE_PUBLISHABLE_KEY @"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
 
 @implementation CSPaymentViewController
 
