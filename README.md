@@ -3,7 +3,7 @@ clojushop_client_ios
 
 iOS client for Clojushop api (https://github.com/i-schuetz/clojushop)
 
-Supports basic functions - products list, product details, login, register, user account, logout, cart, payment.
+Supports basic functions - products list, product details, login, register, user account, logout, cart, payment. Products list has a core data caching layer.
 
 ![ScreenShot](https://raw.github.com/i-schuetz/clojushop_client_ios/master/cios_list.png)
 
