@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CSProduct.h"
+#import "CSProductsListViewController.h"
 
-@interface CSProductDetailsViewController : UIViewController
+@interface CSProductDetailsViewController : UIViewController<ListViewControllerDelegate, UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) CSProduct *product;
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;

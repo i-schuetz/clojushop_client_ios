@@ -50,25 +50,29 @@
     UIViewController *prodController;
     
     
-    
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        UINavigationController *productListNavController = [[UINavigationController alloc] initWithRootViewController:productListController];
+
+        CSProductDetailsViewController *productDetailsController = [[CSProductDetailsViewController alloc] initWithNibName:@"CSProductDetailsViewController" bundle:nil];
+        productListController.detailViewController = productDetailsController;
+        
 //        CSProductDetailsViewController *productDetailsController = [[CSProductDetailsViewController alloc] init];
-//        UINavigationController *productDetailsNav = [[UINavigationController alloc] initWithRootViewController:productDetailsController];
-//        NSArray *splitViewControllers = [NSArray arrayWithObjects: productListController, productDetailsNav, nil];
-//        
-//        UISplitViewController *splitController = [[UISplitViewController alloc] init];
-//        
-//        [splitController setDelegate:productDetailsController];
-//        [splitController setViewControllers:splitViewControllers];
-//        
-//        prodController = splitController;
-//        
-//    } else {
+        UINavigationController *productDetailsNav = [[UINavigationController alloc] initWithRootViewController:productDetailsController];
+        NSArray *splitViewControllers = [NSArray arrayWithObjects: productListNavController, productDetailsNav, nil];
+        
+        UISplitViewController *splitController = [[UISplitViewController alloc] init];
+        
+        [splitController setDelegate:productDetailsController];
+        [splitController setViewControllers:splitViewControllers];
+        
+        prodController = splitController;
+        
+    } else {
         UINavigationController *prodNavController = [[UINavigationController alloc] initWithRootViewController:productListController];
-        [prodNavController.tabBarItem setTitle:@"Products"];
         
         prodController = prodNavController;
-//    }
+    }
+    [prodController.tabBarItem setTitle:@"Products"];
     
     
     CSCartViewController *cartController = [[CSCartViewController alloc] init];

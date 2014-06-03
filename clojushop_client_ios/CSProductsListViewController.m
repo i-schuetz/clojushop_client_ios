@@ -26,6 +26,7 @@
 }
 
 @synthesize tableView;
+@synthesize detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -56,7 +57,7 @@
     
     [self setProgressHidden: NO];
     
-    [[CSDataStore sharedDataStore] getProducts:0 size:4 successHandler:^(NSArray *products) {
+    [[CSDataStore sharedDataStore] getProducts:0 size:5 successHandler:^(NSArray *products) {
         [self onRetrievedProducts: products];
         
         [self setProgressHidden: YES];
@@ -111,11 +112,41 @@
     
     CSProduct *product = [products objectAtIndex:[indexPath row]];
     
-    CSProductDetailsViewController *detailViewController = [[CSProductDetailsViewController alloc] initWithNibName:@"CSProductDetailsViewController" bundle:nil];
-
-    [detailViewController setProduct: product];
+    if (![self splitViewController]) {
         
-    [self.navigationController pushViewController:detailViewController animated:YES];
+        CSProductDetailsViewController *detailViewController = [[CSProductDetailsViewController alloc] initWithNibName:@"CSProductDetailsViewController" bundle:nil];
+        [detailViewController setProduct: product];
+        [detailViewController listViewController:self handleObject:product];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+
+    } else {
+        [detailViewController listViewController:self handleObject:product];
+    }
 }
+
+
+- (void)transferBarButtonToViewController:(UIViewController *)vc
+{
+    // Get the navigation controller in the detail spot of the split view controller
+    UINavigationController *nvc = [[[self splitViewController] viewControllers]
+                                   objectAtIndex:1];
+    
+    // Get the root view controller out of that nav controller
+    UIViewController *currentVC = [[nvc viewControllers] objectAtIndex:0];
+    
+    // If it's the same view controller, let's not do anything
+    if (vc == currentVC)
+        return;
+    
+    // Get that view controller's navigation item
+    UINavigationItem *currentVCItem = [currentVC navigationItem];
+    
+    // Tell new view controller to use left bar button item of current nav item
+    [[vc navigationItem] setLeftBarButtonItem:[currentVCItem leftBarButtonItem]];
+    
+    // Remove the bar button item from the current view controller's nav item
+    [currentVCItem setLeftBarButtonItem:nil];
+}
+
 
 @end
