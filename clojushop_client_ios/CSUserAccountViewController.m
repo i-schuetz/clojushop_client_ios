@@ -29,36 +29,27 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     
     [[CSDataStore sharedDataStore] getUser:^(NSDictionary *user) {
         
         [nameField setText:[user objectForKey:@"una"]];
         [emailField setText:[user objectForKey:@"uem"]];
-        
+
     } failureHandler:^{
         NSLog(@"Couldnt get user");
     }];
-    
-
 }
 
-
-- (void) returnToPreviousTab {
-    
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    int activeTab = [(NSNumber*)[def objectForKey:@"prevActiveTab"] intValue];
-    
-    NSLog(@"getting the tab index: %d", activeTab);
-    
-    [self.tabBarController setSelectedIndex:activeTab];
-}
+//- (void) returnToPreviousTab {
+//    
+//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    int activeTab = [(NSNumber*)[def objectForKey:@"prevActiveTab"] intValue];
+//    
+//    NSLog(@"getting the tab index: %d", activeTab);
+//    
+//    [self.tabBarController setSelectedIndex:activeTab];
+//}
 
 - (void) logout {
     
@@ -80,14 +71,20 @@
 
 - (void) replaceWithLoginRegisterTab {
     
-    UIViewController* loginRegisterViewController = [[CSLoginRegisterViewController alloc] init];
-    UINavigationController *loginRegisterNavController = [[UINavigationController alloc] initWithRootViewController:loginRegisterViewController];
-    [loginRegisterNavController.tabBarItem setTitle:@"Login / Register"];
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
     
-    int tabIndex = 2;
-    NSMutableArray *tabbarViewControllers = [self.tabBarController.viewControllers mutableCopy];
-    [tabbarViewControllers replaceObjectAtIndex: tabIndex withObject:loginRegisterNavController];
-    self.tabBarController.viewControllers = tabbarViewControllers;
+    [[self navigationController].tabBarItem setTitle:@"Login / Register"];
+    
+    
+//    UIViewController* loginRegisterViewController = [[CSLoginRegisterViewController alloc] init];
+//    UINavigationController *loginRegisterNavController = [[UINavigationController alloc] initWithRootViewController:loginRegisterViewController];
+//    [loginRegisterNavController.tabBarItem setTitle:@"Login / Register"];
+//    
+//    int tabIndex = 2;
+//    NSMutableArray *tabbarViewControllers = [self.tabBarController.viewControllers mutableCopy];
+//    [tabbarViewControllers replaceObjectAtIndex: tabIndex withObject:loginRegisterNavController];
+//    self.tabBarController.viewControllers = tabbarViewControllers;
 }
 
 - (void)didReceiveMemoryWarning

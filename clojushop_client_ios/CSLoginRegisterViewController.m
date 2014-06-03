@@ -23,7 +23,7 @@
 @synthesize loginPWField;
 @synthesize loginRegisterView;
 @synthesize userAccountView;
-
+@synthesize containerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +55,10 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"test");
 }
 
 -(void)dismissKeyboard {
@@ -91,13 +95,22 @@
 }
 
 - (void) replaceWithUserAccountTab {
+    CSUserAccountViewController *accountController = [[CSUserAccountViewController alloc] initWithNibName:@"CSUserAccountViewController" bundle:nil];
+    [[self navigationController].tabBarItem setTitle:@"User account"];
+
+    [self.navigationController pushViewController:accountController animated:YES];
     
-    UIViewController* userAccountViewController = [[CSUserAccountViewController alloc] init];
+    [self.navigationController setNavigationBarHidden:YES];
+
     
-    int tabIndex = 2;
-    NSMutableArray *tabbarViewControllers = [self.tabBarController.viewControllers mutableCopy];
-    [tabbarViewControllers replaceObjectAtIndex:tabIndex withObject:userAccountViewController];
-    self.tabBarController.viewControllers = tabbarViewControllers;
+//    UIViewController* userAccountViewController = [[CSUserAccountViewController alloc] init];
+//    
+//    int tabIndex = 2;
+//    NSMutableArray *tabbarViewControllers = [self.tabBarController.viewControllers mutableCopy];
+//    [tabbarViewControllers replaceObjectAtIndex:tabIndex withObject:userAccountViewController];
+//    self.tabBarController.viewControllers = tabbarViewControllers;
+    
+    
 }
 
 - (void) returnToPreviousTab {

@@ -91,6 +91,11 @@
     return bounds;
 }
 
+- (BOOL)shouldAutorotate {
+    return YES; //iOS 5- compatibility
+}
+
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

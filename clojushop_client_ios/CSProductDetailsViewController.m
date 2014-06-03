@@ -57,13 +57,10 @@
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     [productImageView setImage:image];
     
-    UIScrollView *scrollView = (UIScrollView *)self.view;
-    
-    
-    scrollView.scrollEnabled = YES;
-    
-    CGSize contentSize = containerVIew.bounds.size;
-    scrollView.contentSize = CGSizeMake(contentSize.width, contentSize.height);
+//    UIScrollView *scrollView = (UIScrollView *)self.view;
+//    scrollView.scrollEnabled = YES;
+//    CGSize contentSize = containerVIew.bounds.size;
+//    scrollView.contentSize = CGSizeMake(contentSize.width, contentSize.height);
 }
 
 

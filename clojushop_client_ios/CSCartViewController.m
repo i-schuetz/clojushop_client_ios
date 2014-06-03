@@ -25,7 +25,9 @@
     CSCurrency *userCurrency;
 }
 
+@synthesize emptyCartView;
 @synthesize totalView;
+@synthesize totalContainer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,27 +52,48 @@
     items = i;
     
     if ([items count] == 0) {
-        [[self emptyCartView] setHidden:NO];
-        
         //TODO why this didnt work with only nib - before there was view with children table and empty, empty never shows
-        [[[[self tableView] superview] superview] addSubview:[self emptyCartView]];
+//        [[[[self tableView] superview] superview] addSubview: emptyCartView];
+
+        [self showCartState:YES];
 
     } else {
-        [[self emptyCartView] setHidden:YES];
+        [self showCartState:NO];
         [[self tableView] reloadData];
-        
-        [self updateTotalView];
+        [self onModifyLocalCartContent];
     }
 }
 
-- (void)updateTotalView {
-    //TODO server calculates this
-    //TODO multiple currencies
-    //for now we assume all the items have the same currency
-    NSString *currencyId = ((CSCartItem *)[items objectAtIndex:0]).currency;
-    
-    [totalView setText:
-        [[CSCurrencyManager sharedCurrencyManager] getFormattedPrice: [self getTotalPrice:items].stringValue currencyId:currencyId]];
+- (void)showCartState: (BOOL) empty {
+    if (empty) {
+        [emptyCartView setHidden:NO];
+        
+    } else {
+        [emptyCartView setHidden:YES];
+    }
+}
+
+- (void)onModifyLocalCartContent {
+    if ([items count] == 0) {
+        [totalView setText: @"0"];
+        
+        [self showCartState:YES];
+        
+        //TODO why this didnt work with only nib - before there was view with children table and empty, empty never shows
+        [[[[self tableView] superview] superview] addSubview:[self emptyCartView]];
+        
+    } else {
+        
+        //TODO server calculates this
+        //TODO multiple currencies
+        //for now we assume all the items have the same currency
+        NSString *currencyId = ((CSCartItem *)[items objectAtIndex:0]).currency;
+        [totalView setText:
+         [[CSCurrencyManager sharedCurrencyManager] getFormattedPrice: [self getTotalPrice:items].stringValue currencyId:currencyId]];
+
+        [self showCartState:NO];
+        [[self tableView] reloadData];
+    }
 }
 
 
@@ -89,9 +112,8 @@
     UINib *nib = [UINib nibWithNibName:@"CSCartItemCell" bundle:nil];
     
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"CSCartItemCell"];
- 
-    [[self emptyCartView] setHidden:YES];
-    
+
+    [emptyCartView setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -104,15 +126,15 @@
 }
 
 - (void) requestItems {
-    [self setProgressHidden: NO];
+    [self setProgressHidden: NO transparent:NO];
     
     [[CSDataStore sharedDataStore] getCart:^(NSArray *items) {
-        [self setProgressHidden: YES];
+        [self setProgressHidden: YES transparent:NO];
         
         [self onRetrievedItems: items];
         
     } failureHandler:^{
-        [self setProgressHidden: YES];
+        [self setProgressHidden: YES transparent:NO];
     }];
 }
 
@@ -181,7 +203,7 @@
             [items removeObject:item];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
-            [self updateTotalView];
+            [self onModifyLocalCartContent];
 
         } failureHandler:^{
         }];
@@ -216,6 +238,8 @@
     return wrappedQuantityItems;
 }
 
+
+
 -(void)selectedItem:(id<CSSingleSelectionItem>)item baseObject:(id)baseObject {
     CSCartItem *cartItem = baseObject;
     NSString *quantity = [item getWrappedItem];
@@ -226,7 +250,7 @@
         cartItem.quantity = quantity; //TODO server should send updated quantity back
         [[self tableView] reloadData];
 
-        [self updateTotalView];
+        [self onModifyLocalCartContent];
         
         [self setProgressHidden:YES transparent:YES];
     } failureHandler:^{

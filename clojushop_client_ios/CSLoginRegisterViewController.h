@@ -19,6 +19,7 @@
 //TODO custom subviews
 @property (weak, nonatomic) IBOutlet UIView *userAccountView;
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 
 - (IBAction)login:(id)sender;
