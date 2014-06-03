@@ -57,6 +57,8 @@
 		EB93DEF51938CF8300DBC33A /* CSPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB93DEF41938CF8300DBC33A /* CSPaymentViewController.m */; };
 		EB93DEF71938D1D100DBC33A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB93DEF61938D1D100DBC33A /* Security.framework */; };
 		EB93DEFB1938D47400DBC33A /* CSPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB93DEFA1938D47400DBC33A /* CSPaymentViewController.xib */; };
+		EB93DF4F193E51BE00DBC33A /* CSProductDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB93DF4E193E51BE00DBC33A /* CSProductDetailsViewController~ipad.xib */; };
+		EB93DF51193E51DE00DBC33A /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB93DF50193E51DE00DBC33A /* test.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,8 @@
 		EB93DEF41938CF8300DBC33A /* CSPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPaymentViewController.m; sourceTree = "<group>"; };
 		EB93DEF61938D1D100DBC33A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EB93DEFA1938D47400DBC33A /* CSPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSPaymentViewController.xib; sourceTree = "<group>"; };
+		EB93DF4E193E51BE00DBC33A /* CSProductDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CSProductDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		EB93DF50193E51DE00DBC33A /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,7 +335,9 @@
 			children = (
 				EB6E2DA1193142F400ED6B18 /* CSProductDetailsViewController.h */,
 				EB6E2DA2193142F400ED6B18 /* CSProductDetailsViewController.m */,
+				EB93DF50193E51DE00DBC33A /* test.xib */,
 				EB6E2DA3193142F400ED6B18 /* CSProductDetailsViewController.xib */,
+				EB93DF4E193E51BE00DBC33A /* CSProductDetailsViewController~ipad.xib */,
 			);
 			name = ProductDetails;
 			sourceTree = "<group>";
@@ -497,6 +503,8 @@
 				EB6E2DBB193142F400ED6B18 /* CSProductCell.xib in Resources */,
 				EB6E2DB8193142F400ED6B18 /* CSLoginRegisterViewController.xib in Resources */,
 				EB6E2DB3193142F400ED6B18 /* CSCartItemCell.xib in Resources */,
+				EB93DF4F193E51BE00DBC33A /* CSProductDetailsViewController~ipad.xib in Resources */,
+				EB93DF51193E51DE00DBC33A /* test.xib in Resources */,
 				EB6E2DC6193144C700ED6B18 /* Config.plist in Resources */,
 				EB6E2DBF193142F400ED6B18 /* CSProductsListViewController.xib in Resources */,
 				EB430B221931414F0012B27E /* InfoPlist.strings in Resources */,
@@ -703,7 +711,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "clojushop_client_ios/clojushop_client_ios-Prefix.pch";
 				INFOPLIST_FILE = "clojushop_client_ios/clojushop_client_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -717,7 +727,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "clojushop_client_ios/clojushop_client_ios-Prefix.pch";
 				INFOPLIST_FILE = "clojushop_client_ios/clojushop_client_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
