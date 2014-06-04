@@ -15,7 +15,7 @@
 #import "CSProductDetailsViewController.h"
 #import "CSDataStore.h"
 #import "CSCurrencyManager.h"
-
+#import "UIImageView+AFNetworking.h"
 
 @interface CSProductsListViewController ()
 
@@ -96,11 +96,8 @@
     
     [[cell productPrice] setText:[[CSCurrencyManager sharedCurrencyManager] getFormattedPrice:product.price currencyId:product.currency]];
     
-    NSURL *imageUrl = [NSURL URLWithString:[product imgList]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-    UIImage *image = [[UIImage alloc] initWithData:imageData];
-    [[cell productImg] setImage:image];
-    
+    [[cell productImg] setImageWithURL:[NSURL URLWithString:[product imgList]]];
+
     return cell;
 }
 

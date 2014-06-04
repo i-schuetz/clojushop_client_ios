@@ -14,6 +14,7 @@
 #import "CSCurrencyManager.h"
 #import "CSDialogUtils.h"
 #import "CSPaymentViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface CSCartViewController ()
 
@@ -182,10 +183,7 @@
     [cell setController:self];
     [cell setTableView:tableView];
     
-    NSURL *imageUrl = [NSURL URLWithString:[item imgList]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-    UIImage *image = [[UIImage alloc] initWithData:imageData];
-    [[cell productImg] setImage:image];
+    [[cell productImg] setImageWithURL:[NSURL URLWithString:[item imgList]]];
     
     return cell;
 }
