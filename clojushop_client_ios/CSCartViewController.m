@@ -34,7 +34,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Cart";
-        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
         
         // listen for notifications - add to view controller doing the actions
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCart) name:@"ClearLocalCart" object:nil];
@@ -75,7 +74,7 @@
 
 - (void)onModifyLocalCartContent {
     if ([items count] == 0) {
-        [totalView setText: @"0"];
+        [totalView setText: @"0"]; //just for consistency
         
         [self showCartState:YES];
         
@@ -83,7 +82,6 @@
         [[[[self tableView] superview] superview] addSubview:[self emptyCartView]];
         
     } else {
-        
         //TODO server calculates this
         //TODO multiple currencies
         //for now we assume all the items have the same currency
@@ -169,6 +167,8 @@
     
     CSCartItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CSCartItemCell"];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     CSCartItem *item = [items objectAtIndex:[indexPath row]];
     
     [[cell productName] setText:[item name]];
