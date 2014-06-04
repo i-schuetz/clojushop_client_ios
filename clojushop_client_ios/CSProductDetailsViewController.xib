@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="addToCartButton" destination="nXe-po-VS0" id="MGA-ME-0Qo"/>
                 <outlet property="containerVIew" destination="mZH-3l-xs1" id="9xK-Pd-8Pm"/>
-                <outlet property="pleaseSelectView" destination="Uwr-GO-Bxi" id="vof-F7-qdT"/>
+                <outlet property="pleaseSelectView" destination="2fi-gp-5H0" id="vie-jL-2lJ"/>
                 <outlet property="productBrandLabel" destination="0JF-wG-k6q" id="K2y-kt-LVt"/>
                 <outlet property="productImageView" destination="oFh-U5-oBP" id="KaP-hn-ZiJ"/>
                 <outlet property="productLongDescrLabel" destination="hiS-Wy-6Jx" id="8Fi-UQ-Nfl"/>
