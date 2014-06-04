@@ -29,6 +29,10 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     
     [[CSDataStore sharedDataStore] getUser:^(NSDictionary *user) {
