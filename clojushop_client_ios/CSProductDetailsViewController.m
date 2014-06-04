@@ -19,6 +19,8 @@
 @implementation CSProductDetailsViewController
 
 @synthesize product;
+@synthesize pleaseSelectView;
+
 //@synthesize product = product_;
 @synthesize productNameLabel, productBrandLabel, productPriceLabel, productImageView, productLongDescrLabel, containerVIew;
 
@@ -41,6 +43,10 @@
 
 
 - (void)initViews {
+    [pleaseSelectView setHidden:YES];
+    
+    self.title = [product name];
+
     [productNameLabel setText:[product name]];
     [productBrandLabel setText:[product seller]];
     [productLongDescrLabel setText:[product descr]]; //todo
@@ -77,20 +83,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    self.title = [product name];
-
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
     
     //If in portrait mode, display the master view TODO check also ipad
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem];
     }
     
-    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self initViews];
+    } else {
+        [pleaseSelectView setHidden:NO];
     }
 }
 

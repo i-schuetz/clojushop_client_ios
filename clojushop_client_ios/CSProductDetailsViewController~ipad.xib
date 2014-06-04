@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="addToCartButton" destination="aBS-Mg-NLD" id="15J-nV-oga"/>
                 <outlet property="containerVIew" destination="1xL-Dv-iz4" id="EIK-SR-sVl"/>
+                <outlet property="pleaseSelectView" destination="5RQ-xa-5Xm" id="x2E-qD-e0v"/>
                 <outlet property="productBrandLabel" destination="pI5-25-X8c" id="TPz-gQ-Znf"/>
                 <outlet property="productImageView" destination="vyE-0y-cDn" id="xBh-vN-EN6"/>
                 <outlet property="productLongDescrLabel" destination="iFO-xJ-qlD" id="81j-cI-FDf"/>
@@ -18,7 +19,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vaR-2Z-jyH">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xL-Dv-iz4">
@@ -71,6 +72,20 @@
                         <constraint firstAttribute="height" constant="1024" id="oay-97-OS1"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5RQ-xa-5Xm">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select an item" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZ7-5T-6bl">
+                            <rect key="frame" x="233" y="482" width="303" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="1xL-Dv-iz4" secondAttribute="bottom" id="1ev-1D-ZWm"/>
@@ -78,7 +93,6 @@
                 <constraint firstItem="1xL-Dv-iz4" firstAttribute="leading" secondItem="vaR-2Z-jyH" secondAttribute="leading" id="90W-yG-3hq"/>
                 <constraint firstItem="1xL-Dv-iz4" firstAttribute="top" secondItem="vaR-2Z-jyH" secondAttribute="top" id="Utl-VF-zGH"/>
             </constraints>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </scrollView>
     </objects>
 </document>
